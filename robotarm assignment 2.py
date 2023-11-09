@@ -57,9 +57,8 @@ def main():
     X= np.array([[0,0], [w,0], [w,h], [0,h]])
     position = [WINDOW_WIDTH/3, WINDOW_HEIGHT-50]
 
-    num_joints = 8
-    jointangles = [10] * (num_joints+1)
-    joint_speed = 3
+    num_rects = 8
+    jointangles = [10] * (num_rects+1)
 
     gripangle =0
     grip= False
@@ -70,9 +69,9 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
 
-            for i in range(num_joints+1):
+            for i in range(num_rects+1):
                 if pygame.key.get_pressed()[pygame.K_1 + i]:
-                    jointangles[i] += joint_speed
+                    jointangles[i] += 3
 
             #gripper's action   
             if event.type == pygame.KEYDOWN: 
@@ -97,7 +96,7 @@ def main():
         #arms
         arms = []
         H = H0 @ Tmat(w/2,0) @Rmat(-90)
-        for i in range(num_joints):
+        for i in range(num_rects):
             arms.append(Wings(w, h, H, jointangles[i]))
             H = arms[-1].Hnew @ Tmat(w, 0) @ Tmat(0, h / 2)
         for arm in arms:
