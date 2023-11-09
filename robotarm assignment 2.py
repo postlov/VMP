@@ -51,6 +51,7 @@ def main():
 
     screen = pygame.display.set_mode( (WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
+    pygame.display.set_caption("20201091 송민경")
 
     w, h = 100, 40
     X= np.array([[0,0], [w,0], [w,h], [0,h]])
